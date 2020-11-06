@@ -1,0 +1,8 @@
+package cl.everis.beca.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class RestController {
+
+}

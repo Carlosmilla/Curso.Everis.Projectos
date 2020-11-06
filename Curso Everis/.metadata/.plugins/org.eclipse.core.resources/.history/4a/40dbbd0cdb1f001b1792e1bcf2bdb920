@@ -1,0 +1,17 @@
+package cl.everis.beca.prueba.interfaces;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Repository;
+
+import cl.everis.beca.prueba.models.Pokemon;
+
+@Repository
+public interface Ipokemon {
+	
+	public void borrarPorId(Long id);
+	
+	public Optional<Pokemon> findByType(String tipo);
+	
+}

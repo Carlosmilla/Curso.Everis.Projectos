@@ -1,0 +1,10 @@
+package cl.everis.beca.prueba.interfaces;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface Ipokemon {
+
+	public void modificarPorId(Long id, String name);
+	public void borrarPorId(Long id);
+}

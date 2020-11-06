@@ -1,0 +1,53 @@
+package cl.everis.beca.services;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.google.common.base.Strings;
+
+import cl.everis.beca.abstractCase.AbstractHelper;
+import cl.everis.beca.interfaces.IOperacionesInterface;
+
+@Service
+public class OperacionesService extends AbstractHelper implements IOperacionesInterface{
+
+	@Override
+	public Integer suma(Integer numA, Integer numB) {
+		Integer res = (numA+numB);
+		return res;
+	}
+
+	@Override
+	public Integer resta(Integer numA, Integer numB) {
+		Integer res = (numA-numB);
+		return res;
+	}
+
+	@Override
+	public Integer multiplicacion(Integer numA, Integer numB) {
+		Integer res = (numA*numB);
+		return res;
+	}
+
+	@Override
+	public Integer division(Integer numA, Integer numB) {
+		validarDiv(numA, numB);
+		Integer res = (numA/numB);
+		return res;
+	}
+
+	@Override
+	public void lista() {
+		List list = Arrays.asList("1", "2", "3", "4", "5");
+		Collections.sort(list);
+		System.out.println(list);
+	}
+
+	
+}

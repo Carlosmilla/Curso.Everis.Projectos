@@ -1,0 +1,36 @@
+package cl.everis.beca.services;
+
+import org.springframework.stereotype.Service;
+
+import cl.everis.beca.abstractCase.AbstractHelper;
+import cl.everis.beca.interfaces.IOperacionesInterface;
+
+@Service
+public class OperacionesService extends AbstractHelper implements IOperacionesInterface{
+
+	@Override
+	public Integer suma(Integer numA, Integer numB) {
+		Integer res = (numA+numB);
+		return res;
+	}
+
+	@Override
+	public Integer resta(Integer numA, Integer numB) {
+		Integer res = (numA-numB);
+		return res;
+	}
+
+	@Override
+	public Integer multiplicacion(Integer numA, Integer numB) {
+		Integer res = (numA*numB);
+		return res;
+	}
+
+	@Override
+	public Integer division(Integer numA, Integer numB) {
+		validarDiv(numA, numB);
+		Integer res = (numA/numB);
+		return res;
+	}
+
+}

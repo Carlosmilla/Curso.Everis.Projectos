@@ -1,0 +1,17 @@
+package cl.everis.beca.services;
+
+import org.springframework.stereotype.Service;
+
+import cl.everis.beca.interfaces.IOperacionesInterface;
+
+@Service
+public class OperacionesService implements IOperacionesInterface{
+
+	@Override
+	public Integer suma(Integer numA, Integer numB) {
+		Integer res = (numA+numB);
+		System.out.println(res);
+	}
+
+
+}

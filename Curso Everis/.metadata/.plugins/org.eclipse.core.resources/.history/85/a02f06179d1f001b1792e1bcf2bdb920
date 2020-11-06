@@ -1,0 +1,20 @@
+package cl.everis.beca.models;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+@Entity
+@Table(name = "Personas")
+public class Persona {
+
+	private Long id;
+	private String sNombre;
+	private String sApellido;
+	private int edad;
+	private String rut;
+}

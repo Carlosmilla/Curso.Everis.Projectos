@@ -1,0 +1,5 @@
+package cl.everis.config;
+
+public class SwaggerConfig {
+
+}

@@ -1,0 +1,11 @@
+package cl.everis.beca.interfaces;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import cl.everis.beca.models.Persona;
+
+public interface Ipersona extends JpaRepository<Persona, Long>{
+
+	void deleteByName(String name);
+
+}

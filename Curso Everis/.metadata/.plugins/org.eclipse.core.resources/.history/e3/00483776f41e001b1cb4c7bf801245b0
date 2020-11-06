@@ -1,0 +1,6 @@
+package cl.everis.beca.interfaces;
+
+public interface IOperacionesInterface {
+
+	public Integer suma(Integer numA, Integer numB);
+}

@@ -1,0 +1,9 @@
+package cl.everis.beca.prueba.interfaces;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import cl.everis.beca.prueba.models.Pokemon;
+
+public interface IpokemonInterface extends JpaRepository<Pokemon, Long>{
+
+}

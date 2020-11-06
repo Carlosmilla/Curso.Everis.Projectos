@@ -1,0 +1,11 @@
+package cl.everis.beca.interfaces;
+
+import java.util.List;
+import java.util.Optional;
+
+import cl.everis.beca.models.Persona;
+
+public interface IpersonaService {
+
+	
+}

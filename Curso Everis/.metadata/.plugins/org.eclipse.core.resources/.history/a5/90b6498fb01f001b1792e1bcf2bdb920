@@ -1,0 +1,37 @@
+package cl.everis.beca.controller;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import cl.everis.beca.interfaces.Ipersona;
+import cl.everis.beca.models.Persona;
+
+@RestController
+@RequestMapping("/Persona")
+public class RestControlador {
+
+	@Autowired
+	private Ipersona personaRepo;
+	
+	@GetMapping(value = "/agregarPersona", produces = "application/json")
+	public ResponseEntity<Persona> agregar(@RequestParam String nombre, @RequestParam String rut, @RequestParam Integer edad) {
+		Persona persona = new Persona();
+		persona.setSNombre(nombre);
+		persona.setRut(rut);
+		persona.setEdad(edad);
+		return new ResponseEntity<Persona>(personaRepo.save(persona), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/findById", produces = "application/json")
+	public ResponseEntity<Optional<Persona>> findById(@RequestParam Long id) {
+		return new ResponseEntity<Optional<Persona>>(personaRepo.findById(id) , HttpStatus.OK);
+	}
+
+}

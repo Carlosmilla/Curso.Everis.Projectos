@@ -1,0 +1,18 @@
+{
+    "telemetry.machineId": "58d91b5a4f86254af51256b9cbc41a1c1d5a15a39bf0c0a07c2e132fb7ce1e84",
+    "openedPathsList": {
+        "workspaces3": [
+            {
+                "id": "e9d42ad52acafd8f2bb75a17cfd9f5d5",
+                "configURIPath": "file:///c%3A/Users/Carlos/Documents/Workspace/Curso%20Everis/.metadata/codemix.code-workspace"
+            },
+            {
+                "id": "c6f59ba4931c18c84f217585cb3934fd",
+                "configURIPath": "file:///c%3A/Users/Carlos/Documents/Workspace/Curso%20Everist/.metadata/codemix.code-workspace"
+            }
+        ],
+        "files2": []
+    },
+    "theme": "vs-dark",
+    "themeBackground": "#221a0f"
+}

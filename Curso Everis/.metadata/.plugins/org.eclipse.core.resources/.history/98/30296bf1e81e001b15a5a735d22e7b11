@@ -1,0 +1,5 @@
+package cl.everis.Dto;
+
+public class UserDTO {
+
+}

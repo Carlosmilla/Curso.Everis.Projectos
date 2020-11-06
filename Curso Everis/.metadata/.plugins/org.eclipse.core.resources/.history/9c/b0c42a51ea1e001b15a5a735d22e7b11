@@ -1,0 +1,5 @@
+package cl.everis.controller;
+
+public class UserController {
+
+}

@@ -1,0 +1,5 @@
+package cl.everis.beca.interfaces;
+
+public interface IpokemonInterface {
+
+}

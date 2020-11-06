@@ -1,0 +1,45 @@
+package cl.everis.beca.prueba.models;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+/**
+ * 
+ * @author Carlos
+ *
+ */
+@Data
+@AllArgsConstructor
+@Entity
+@Table(name = "POKEMON")
+public class Pokemon {
+	
+    protected static final String POKEMON_SEQ = "pokemon_seq";
+
+    
+    /**
+     * Declaracion de atributos de la tabla
+     */
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = POKEMON_SEQ)
+	@SequenceGenerator(sequenceName = POKEMON_SEQ, allocationSize = 1, name = "POKEMON_SEQ")
+	private Long id;
+	private String nombre;
+	private String tipo;
+	private Integer numEvoluciones;
+	
+	public Pokemon(String nombre) {}
+
+	
+}
+	
+
+

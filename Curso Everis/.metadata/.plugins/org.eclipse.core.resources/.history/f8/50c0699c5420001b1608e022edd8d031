@@ -1,0 +1,135 @@
+package cl.everis.beca.prueba.controllers;
+
+
+import java.util.List;
+import java.util.Optional;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+
+import cl.everis.beca.prueba.interfaces.IpokemonInterface;
+import cl.everis.beca.prueba.models.Pokemon;
+import cl.everis.beca.prueba.service.PokemonService;
+
+/**
+ * 
+ * @author Carlos
+ *
+ */
+@RestController
+@RequestMapping("/pokeDex")
+public class RestControlador {
+
+	/**
+	 * Instancia de interface.
+	 */
+	@Autowired
+	private IpokemonInterface pokeData;
+	
+	/**
+	 * Instancia de Capa de Servicios
+	 */
+	@Autowired
+	private PokemonService pokeService;
+	
+	
+	/**
+	 * Implementacion de metodo para agregar nuevos pokemon.
+	 * @param nombre
+	 * @param tipo
+	 * @param numEvo
+	 * @return
+	 */
+	@PostMapping(value = "/agregarPokemon", produces = "application/json")
+	public ResponseEntity<Pokemon> agregar(@RequestParam String nombre, @RequestParam String tipo, @RequestParam Integer numEvo) {
+		Pokemon pokemon = new Pokemon();
+		pokemon.setNombre(nombre); // set de atributos de la clase
+		pokemon.setTipo(tipo);
+		pokemon.setNumEvoluciones(numEvo);
+		return new ResponseEntity<Pokemon>(pokeData.save(pokemon), HttpStatus.OK); // uso de metodo save para guardar nuevo objeto
+	}
+	
+	/**
+	 * Implementacion de metodo para listar pokemon.
+	 * @return
+	 */
+	@GetMapping(value = "/verTodoPokemon", produces = "application/json")
+	public ResponseEntity<List<Pokemon>> verPokemon() {
+		return new ResponseEntity<List<Pokemon>>(pokeData.findAll(), HttpStatus.OK); // uso de metodo findAll en lista
+	}
+	
+	/**
+	 * Implementacion del metodo borrar.
+	 * @param id
+	 * @return
+	 */
+	@DeleteMapping(value = "/borrarPokemonPorId", produces = "application/json")
+	public ResponseEntity<Object> deleteById(Long id) {
+		pokeService.borrarPorId(id); // rescatar id
+		return new ResponseEntity<>(HttpStatus.OK); // dar respuesta
+	}
+	
+	/**
+	 * Implementacion del metodo BuscarPorId.
+	 * @param id
+	 * @return
+	 */
+	@GetMapping(value = "/buscarPokemonPorId", produces = "application/json")
+	public ResponseEntity<Optional<Pokemon>> buscarPokemonPorId(@RequestParam Long id) { // solicitud de parametro Long
+		return new ResponseEntity<Optional<Pokemon>>(pokeData.findById(id), HttpStatus.OK);
+	}
+	
+	/**
+	 * Implementacion del metodo buscarPorTipo.
+	 * @param tipo
+	 * @return
+	 */
+	@GetMapping(value = "/buscarPokemonPorTipo", produces = "application/json")
+	public ResponseEntity<List<Pokemon>> buscarPokemonPorTipo(@RequestParam String tipo) { // se solicita parametro String
+		return new ResponseEntity<List<Pokemon>>(pokeData.findByTipo(tipo), HttpStatus.OK); // se invoca metodo establecido en la interfaz
+	}
+	
+	/**
+	 * Implementacion del metodo listar por orden Alfabetico
+	 * @param upOrder
+	 * @return
+	 */
+	@GetMapping(value = "/ordenarPokemon", produces = "application/json")
+	public ResponseEntity<List<Pokemon>> listarPokemon(@RequestParam boolean upOrder){ // parametro boolean 
+        if(!upOrder) { // condicional 
+    		return new ResponseEntity<List<Pokemon>>(pokeData.findAll(Sort.by("nombre").descending()), HttpStatus.OK); // si boolean = true el orden es ascendente
+		}else {
+			return new ResponseEntity<List<Pokemon>>(pokeData.findAll(Sort.by("nombre").ascending()), HttpStatus.OK); // si boolean = false el orden es descendente
+		}
+	}
+	
+	/**
+	 * Uso de Patch para actualizacion de campos
+	 * No afecta la Id debido a que es el parametro base
+	 * @param id
+	 * @param pokemon
+	 * @return
+	 */
+	@PutMapping(value = "actualizarPokemon", produces = "application/json")
+	public ResponseEntity<Pokemon> patchUpdate(@RequestParam Long id, Pokemon pokemon){ // solicitud de parametro id e instancia de clase
+		Pokemon poke = pokeData.getOne(id); // obtencion de id
+		poke.setNombre(pokemon.getNombre());
+		poke.setTipo(pokemon.getTipo());
+		poke.setNumEvoluciones(pokemon.getNumEvoluciones());
+		return new ResponseEntity<Pokemon>(pokeData.save(poke), HttpStatus.OK); // guardar cambios
+	}
+
+
+}
